@@ -1,0 +1,47 @@
+name: Update Files Every 24 Hours
+on:
+  push:
+    branches: [ master ]
+    paths-ignore:
+      - README.md
+      - .github/workflows/run.yml
+  workflow_dispatch:
+  schedule: 
+    - cron:  '0 12 * * *' 
+
+jobs:
+  update-adblock-rules-then-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.0.0
+        with:
+          token: ${{ secrets.ACTIONS_TOKEN }}
+            
+      - name: download action
+        uses: carlosperate/download-file-action@v1.0.3
+        with: 
+          file-url: https://github.com/Loyalsoldier/v2ray-rules-dat/raw/master/.github/workflows/run.yml
+          file-name: .github/workflows/run.yml
+
+      - name: download readme
+        uses: carlosperate/download-file-action@v1.0.3
+        with: 
+          file-url: https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/master/README.md
+          file-name: README.md   
+
+      - name: Commit Changes
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then 
+              exit 0
+          else 
+              git add .
+              git config --local user.email "48041092+mangoclover@users.noreply.github.com"
+              git config --local user.name "github-action[bot]"
+              git commit -m "Updated at $(date)" -a
+          fi
+            
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
