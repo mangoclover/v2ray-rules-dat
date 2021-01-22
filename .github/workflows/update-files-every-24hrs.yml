@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - README.md
       - .github/workflows/run.yml
+      - .github/workflows/sync-fork.yml
   workflow_dispatch:
   schedule: 
     - cron:  '0 12 * * *' 
