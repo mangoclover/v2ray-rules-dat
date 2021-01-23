@@ -2,8 +2,6 @@ name: Update Files Every 24 Hours
 on:
   push:
     branches: [ master ]
-    branches-ignore: 
-      - hidden
     paths-ignore:
       - README.md
       - .github/workflows/run.yml
