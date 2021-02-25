@@ -11,7 +11,7 @@ on:
     - cron:  '0 12 * * *' 
 
 jobs:
-  update-adblock-rules-then-push:
+  update-files-then-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
