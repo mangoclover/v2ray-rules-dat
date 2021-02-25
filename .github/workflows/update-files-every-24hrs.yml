@@ -1,4 +1,4 @@
-name: Update Files Every 24 Hours
+name: Update Files Every 4 Hours
 on:
   push:
     branches: [ master ]
@@ -8,7 +8,7 @@ on:
       - .github/workflows/sync-fork.yml
   workflow_dispatch:
   schedule: 
-    - cron:  '0 12 * * *' 
+    - cron:  '0 */4 * * *' 
 
 jobs:
   update-files-then-push:
