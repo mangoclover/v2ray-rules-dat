@@ -20,13 +20,13 @@ jobs:
           token: ${{ secrets.ACTIONS_TOKEN }}
             
       - name: download action
-        uses: carlosperate/download-file-action@v1.0.3
+        uses: carlosperate/download-file-action@v1.1.0
         with: 
           file-url: https://github.com/Loyalsoldier/v2ray-rules-dat/raw/master/.github/workflows/run.yml
           file-name: .github/workflows/run.yml
 
       - name: download readme
-        uses: carlosperate/download-file-action@v1.0.3
+        uses: carlosperate/download-file-action@v1.1.0
         with: 
           file-url: https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/master/README.md
           file-name: README.md   
